@@ -1,8 +1,10 @@
 require("dotenv").config();
 const { Bot } = require("grammy");
 const { MainHandler, WeatherHandler } = require('./src/handlers');
+const { ErrorHandler } = require('./src/errors/index');
 
 const bot = new Bot(process.env.BOT_API_KEY);
+const errorHandler = new ErrorHandler(bot);
 
 bot.command("start", async (ctx) => {
     await MainHandler.handleStart(ctx);
